@@ -1,29 +1,35 @@
 package com.example.appxin;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.telephony.SmsMessage;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.appxin.englishapp.ActivityEnglishApp;
 import com.example.appxin.fortythree.ActivityFrom;
 import com.example.appxin.gridview.ActivityGridView;
 import com.example.appxin.linearLayoutCaculator.ActivityCaculator;
 import com.example.appxin.listviewcontact.ActivityContact;
+import com.example.appxin.retrofitlearn.ActivityRetrofit;
 import com.example.appxin.startActivityForResult.ActivityOne;
+import com.example.appxin.todoapp.ActivityLogin;
+import com.example.appxin.todoapp.SplashActivity;
 import com.example.appxin.viewpager.ActivityViewPager;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btnJump, btnJump43, btnStartActivityForResult, btnCaculator, btnListViewContact, btnGridView, btnEnglishApp, btnViewPager;
-
+    private BroadcastReceiver chargerReceiver;
+    private Button btnJump, btnJump43, btnStartActivityForResult, btnCaculator, btnListViewContact, btnGridView, btnEnglishApp, btnViewPager, btnRetrofit, btnTodoApp;
+    private static final int PERMISSION_REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         btnGridView = this.findViewById(R.id.btnGridView);
         btnEnglishApp = this.findViewById(R.id.btn_english_app);
         btnViewPager = this.findViewById(R.id.btnViewPager);
+        btnRetrofit = this.findViewById(R.id.btnRetrofit);
+        btnTodoApp = this.findViewById(R.id.btn_todo_app);
 
         btnJump.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +110,64 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnRetrofit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), ActivityRetrofit.class);
+                startActivity(i);
+            }
+        });
+
+        btnTodoApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), ActivityLogin.class));
+            }
+        });
+
+        chargerReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                // TODO: Awesome things
+                Bundle bundle = intent.getExtras();
+
+                String messages = "";
+                if (bundle != null) {
+                    Object[] pdus = (Object[]) bundle.get("pdus");
+
+                    for(int i=0; i<pdus.length; i ++) {
+                        SmsMessage message = SmsMessage.createFromPdu((byte[]) pdus[i]);
+                        messages += message.getDisplayOriginatingAddress();
+                        messages += " " + message.getMessageBody()+"\n";
+                    }
+                }
+
+                Toast.makeText(context,  messages, Toast.LENGTH_LONG).show();
+
+            }
+        };
+
+//        registerReceiver(
+//                chargerReceiver,
+//                new IntentFilter("android.provider.Telephony.SMS_RECEIVED")
+//        );
+
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Quyền đã được cấp
+                Toast.makeText(this, "Quyền nhận và đọc SMS đã được cấp", Toast.LENGTH_SHORT).show();
+            } else {
+                // Quyền bị từ chối
+                Toast.makeText(this, "Quyền nhận và đọc SMS bị từ chối", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
@@ -139,5 +205,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i("AppXinLog", "Activity 1 :onDestroy");
+//        unregisterReceiver(chargerReceiver);
+    }
+
+    public static class SMSReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            Bundle bundle = intent.getExtras();
+
+            String messages = "";
+            if (bundle != null) {
+                Object[] pdus = (Object[]) bundle.get("pdus");
+
+                for(int i=0; i<pdus.length; i ++) {
+                    SmsMessage message = SmsMessage.createFromPdu((byte[]) pdus[i]);
+                    messages += message.getDisplayOriginatingAddress();
+                    messages += " " + message.getMessageBody()+"\n";
+                }
+            }
+
+            Toast.makeText(context,  messages, Toast.LENGTH_LONG).show();
+
+        }
     }
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".retrofitlearn.ActivityRetrofit">
+
+    <Button
+        android:id="@+id/btn_callApi"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Get Customer" />
+    <ProgressBar
+        android:id="@+id/progressBar_cyclic"
+        android:visibility="gone"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:minHeight="40dp"
+        android:minWidth="40dp"
+        android:layout_marginVertical="16dp"
+        android:layout_gravity="center"
+        />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv_customer"
+        android:layout_marginTop="16dp"
+        />
+</LinearLayout>

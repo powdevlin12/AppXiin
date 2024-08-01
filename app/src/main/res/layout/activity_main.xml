@@ -58,6 +58,12 @@
             android:text="ViewPager"
             android:id="@+id/btnViewPager"
             />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Retrofit"
+            android:id="@+id/btnRetrofit"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="0dp"
@@ -71,6 +77,12 @@
             android:layout_height="wrap_content"
             android:text="English App"
             android:id="@+id/btn_english_app"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Todo App"
+            android:id="@+id/btn_todo_app"
             />
     </LinearLayout>
 </LinearLayout>

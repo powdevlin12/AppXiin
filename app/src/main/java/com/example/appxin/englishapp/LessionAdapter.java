@@ -37,12 +37,25 @@ public class LessionAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = LayoutInflater.from(this.context);
-        View rowView = inflater.inflate(R.layout.lession_item, parent, false);
+        View rowView = convertView;
+        ViewHolder viewHolder;
 
-        TextView txtLessionName = (TextView) rowView.findViewById(R.id.txt_lession);
-        txtLessionName.setText(this.arrLession.get(position).lessionName);
+        if (rowView == null) {
+            LayoutInflater inflater = LayoutInflater.from(this.context);
+            rowView = inflater.inflate(R.layout.lession_item, parent, false);
 
+            viewHolder = new ViewHolder();
+            viewHolder.txtLessionName = (TextView) rowView.findViewById(R.id.txt_lession);
+
+            rowView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) rowView.getTag();
+        }
+        viewHolder.txtLessionName.setText(this.arrLession.get(position).lessionName);
         return rowView;
+    }
+
+    static class ViewHolder {
+        TextView txtLessionName;
     }
 }
