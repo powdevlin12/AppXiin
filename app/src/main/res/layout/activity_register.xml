@@ -43,9 +43,24 @@
                 android:hint="Enter name"
                 android:background="@drawable/input_field"
                 android:textColorHint="#D3CFCF"
-                android:id="@+id/edt_name_todo"
+                android:id="@+id/edt_name_register"
                 android:singleLine="true"
                 android:inputType="text"
+                android:textColor="#ffffff"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="Enter email"
+                android:background="@drawable/input_field"
+                android:textColorHint="#D3CFCF"
+                android:id="@+id/edt_email_register"
+                android:layout_marginTop="20dp"
+                android:singleLine="true"
+                android:inputType="text"
+                android:textColor="#ffffff"
+
                 />
             <EditText
                 android:layout_width="match_parent"
@@ -54,18 +69,34 @@
                 android:hint="Enter password"
                 android:background="@drawable/input_field"
                 android:textColorHint="#D3CFCF"
-                android:id="@+id/edt_password_todo"
+                android:id="@+id/edt_password_register"
                 android:layout_marginTop="20dp"
                 android:singleLine="true"
                 android:inputType="textPassword"
+                android:textColor="#ffffff"
+
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="Enter confirm password"
+                android:background="@drawable/input_field"
+                android:textColorHint="#D3CFCF"
+                android:id="@+id/edt_password_confirm_register"
+                android:layout_marginTop="20dp"
+                android:singleLine="true"
+                android:inputType="textPassword"
+                android:textColor="#ffffff"
+
                 />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Login"
+                android:text="Register"
                 android:textAllCaps="false"
                 android:textSize="18dp"
-                android:id="@+id/btn_login"
+                android:id="@+id/btn_register"
                 android:layout_marginTop="30dp"
                 />
             <ProgressBar
@@ -74,7 +105,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:id="@+id/progress_bar"
-                android:visibility="visible"
+                android:visibility="gone"
                 />
             <View
                 android:layout_width="match_parent"
@@ -89,10 +120,9 @@
                 android:textColor="#ffffff"
                 android:textAllCaps="false"
                 android:textAlignment="center"
-                android:text="Don't have account ? Create new account"
-                android:id="@+id/txt_navigate_register"
+                android:text="Have a account ? Login"
+                android:id="@+id/txt_navigate_login"
                 />
-
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
