@@ -46,6 +46,7 @@
                 android:id="@+id/edt_name_todo"
                 android:singleLine="true"
                 android:inputType="text"
+                android:textColor="#ffffff"
                 />
             <EditText
                 android:layout_width="match_parent"
@@ -58,6 +59,7 @@
                 android:layout_marginTop="20dp"
                 android:singleLine="true"
                 android:inputType="textPassword"
+                android:textColor="#ffffff"
                 />
             <Button
                 android:layout_width="match_parent"
@@ -73,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:id="@+id/progress_bar"
+                android:id="@+id/progress_bar_todo"
                 android:visibility="gone"
                 />
             <View
