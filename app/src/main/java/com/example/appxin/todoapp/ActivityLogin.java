@@ -1,6 +1,7 @@
 package com.example.appxin.todoapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,9 +19,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.appxin.R;
+import com.example.appxin.todoapp.UtilsService.SharedPreferenceClass;
 import com.example.appxin.todoapp.UtilsService.TodoApiService;
 import com.example.appxin.todoapp.UtilsService.UtilService;
 import com.example.appxin.todoapp.models.ResponseError;
+import com.example.appxin.todoapp.models.User;
 import com.example.appxin.todoapp.models.login.LoginBody;
 import com.example.appxin.todoapp.models.login.SuccessLogin;
 import com.google.gson.Gson;
@@ -40,6 +43,8 @@ public class ActivityLogin extends AppCompatActivity {
 
     UtilService utilService;
 
+    SharedPreferenceClass sharedPreferenceClass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,7 @@ public class ActivityLogin extends AppCompatActivity {
         edtName = this.findViewById(R.id.edt_name_todo);
         edtPassword = this.findViewById(R.id.edt_password_todo);
         progressBar = this.findViewById(R.id.progress_bar_todo);
+        sharedPreferenceClass = new SharedPreferenceClass(this);
 
         txtNavigateRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +83,16 @@ public class ActivityLogin extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences todo_pref = getSharedPreferences(SharedPreferenceClass.USER_PREF, MODE_PRIVATE);
+        if (todo_pref.contains("token")) {
+            startActivity(new Intent(this, ActivityTodoMain.class));
+            finish();
+        }
+    }
+
     private boolean validate(View view) {
         if (TextUtils.isEmpty(name)) {
             utilService.showSnackBar(view, "Please enter your email");
@@ -100,7 +116,10 @@ public class ActivityLogin extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     Toast.makeText(ActivityLogin.this, "Login success", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(v.getContext(), ActivityTodoMain.class);
+                    SuccessLogin successLogin = response.body();
+                    sharedPreferenceClass.setValue_string("token", successLogin.getToken());
                     startActivity(i);
+                    finish();
                 } else {
                     try {
                         String errorBody = response.errorBody().string();
