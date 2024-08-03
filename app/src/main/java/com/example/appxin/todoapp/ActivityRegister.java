@@ -22,8 +22,10 @@ import com.example.appxin.retrofitlearn.ActivityRetrofit;
 import com.example.appxin.retrofitlearn.models.Post;
 import com.example.appxin.todoapp.UtilsService.TodoApiService;
 import com.example.appxin.todoapp.UtilsService.UtilService;
+import com.example.appxin.todoapp.models.ResponseError;
 import com.example.appxin.todoapp.models.User;
 import com.example.appxin.todoapp.models.UserBody;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -95,17 +97,24 @@ public class ActivityRegister extends AppCompatActivity {
                     Intent i = new Intent(v.getContext(), ActivityLogin.class);
                     startActivity(i);
                 } else {
-                    Log.i("AppXinLog", "Create user error " + response);
+                    try {
+                        String errorBody = response.errorBody().string();
+                        Gson gson = new Gson();
+                        ResponseError responseError = gson.fromJson(errorBody, ResponseError.class);
+                        Log.i("AppXinLog", "Error body: " + responseError.getMsg());
+                        Toast.makeText(ActivityRegister.this,  responseError.getMsg(), Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 progressBar.setVisibility(View.GONE);
-
             }
 
             @Override
             public void onFailure(Call<com.example.appxin.todoapp.models.Response> call, Throwable t) {
                 Log.i("AppXinLog", "Create user error");
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(ActivityRegister.this, "Create user error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityRegister.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

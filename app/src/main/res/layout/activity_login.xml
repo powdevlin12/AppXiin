@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
         android:orientation="vertical"
-        android:paddingTop="120dp"
+        android:paddingTop="160dp"
         >
         <ImageView
             android:layout_width="120dp"
@@ -74,7 +74,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:id="@+id/progress_bar"
-                android:visibility="visible"
+                android:visibility="gone"
                 />
             <View
                 android:layout_width="match_parent"
