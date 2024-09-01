@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.telephony.SmsMessage;
 import android.util.Log;
 import android.view.View;
@@ -23,20 +24,29 @@ import com.example.appxin.linearLayoutCaculator.ActivityCaculator;
 import com.example.appxin.listviewcontact.ActivityContact;
 import com.example.appxin.retrofitlearn.ActivityRetrofit;
 import com.example.appxin.sqlite.Sqlite;
+import com.example.appxin.sqlite2.Sqlite2;
 import com.example.appxin.startActivityForResult.ActivityOne;
 import com.example.appxin.todoapp.ActivityLogin;
 import com.example.appxin.todoapp.SplashActivity;
 import com.example.appxin.viewpager.ActivityViewPager;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver chargerReceiver;
-    private Button btnJump, btnJump43, btnStartActivityForResult, btnCaculator, btnListViewContact, btnGridView, btnEnglishApp, btnViewPager, btnRetrofit, btnTodoApp, btnActionBar, btnSqLite;
+    private Button btnJump, btnJump43, btnStartActivityForResult, btnCaculator, btnListViewContact, btnGridView, btnEnglishApp, btnViewPager, btnRetrofit, btnTodoApp, btnActionBar, btnSqLite, btnSqlite2;
     private static final int PERMISSION_REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.i("AppXinLog", "Activity 1 : onCreate");
+
+        File filePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)+File.separator+"AppXiin");
+        filePath.mkdirs();
+
+        File dir = getDatabasePath("myproduct.db");
+
+        Log.i("AppXinLog", "DB path : " + dir.getAbsolutePath());
         btnJump = this.findViewById(R.id.btn_jump);
         btnJump43 = this.findViewById(R.id.btn_jump_43);
         btnStartActivityForResult = this.findViewById(R.id.btnStartActivityForResult);
@@ -49,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         btnTodoApp = this.findViewById(R.id.btn_todo_app);
         btnActionBar = this.findViewById(R.id.btnActionBar);
         btnSqLite = this.findViewById(R.id.btnSqlLite);
+        btnSqlite2 = this.findViewById(R.id.btnSqlite2);
 
         btnJump.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,6 +151,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), Sqlite.class);
+                startActivity(i);
+            }
+        });
+
+        btnSqlite2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), Sqlite2.class);
                 startActivity(i);
             }
         });

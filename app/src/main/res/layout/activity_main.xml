@@ -78,6 +78,12 @@
             android:text="SQL Lite"
             android:id="@+id/btnSqlLite"
             />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SQLite XuanThuLab"
+            android:id="@+id/btnSqlite2"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="0dp"
