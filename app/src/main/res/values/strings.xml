@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">App xiịn</string>
+    <string name="open_draw">Open Drawer</string>
+    <string name="close_draw">Close Drawer</string>
 </resources>

@@ -40,4 +40,9 @@ public class SharedPreferenceClass {
     public void setValue_boolean(String key, boolean value) {
         prefsEditor.putBoolean(key, value).commit();
     }
+
+    // clear
+    public void clear() {
+        prefsEditor.clear().commit();
+    }
 }

@@ -64,6 +64,20 @@
             android:text="Retrofit"
             android:id="@+id/btnRetrofit"
             />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Action bar"
+            android:id="@+id/btnActionBar"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SQL Lite"
+            android:id="@+id/btnSqlLite"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="0dp"

@@ -69,7 +69,6 @@ public class ActivityLogin extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
                 name = edtName.getText().toString();
                 password = edtPassword.getText().toString();
 
@@ -78,7 +77,6 @@ public class ActivityLogin extends AppCompatActivity {
                 if (valid) {
                     loginUser(view);
                 }
-                progressBar.setVisibility(View.GONE);
             }
         });
     }
@@ -86,11 +84,11 @@ public class ActivityLogin extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        SharedPreferences todo_pref = getSharedPreferences(SharedPreferenceClass.USER_PREF, MODE_PRIVATE);
-        if (todo_pref.contains("token")) {
-            startActivity(new Intent(this, ActivityTodoMain.class));
-            finish();
-        }
+//        SharedPreferences todo_pref = getSharedPreferences(SharedPreferenceClass.USER_PREF, MODE_PRIVATE);
+//        if (todo_pref.contains("token")) {
+//            startActivity(new Intent(this, ActivityTodoMain.class));
+//            finish();
+//        }
     }
 
     private boolean validate(View view) {
@@ -109,6 +107,7 @@ public class ActivityLogin extends AppCompatActivity {
 
     private void loginUser(View v) {
         LoginBody loginBody = new LoginBody(name, password);
+        progressBar.setVisibility(View.VISIBLE);
 
         TodoApiService.apiService.loginUser(loginBody).enqueue(new Callback<SuccessLogin>() {
             @Override
@@ -131,12 +130,16 @@ public class ActivityLogin extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+                progressBar.setVisibility(View.GONE);
+
             }
 
             @Override
             public void onFailure(Call<SuccessLogin> call, Throwable t) {
                 Log.i("AppXinLog", "Create user error");
                 Toast.makeText(ActivityLogin.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+
             }
         });
     }

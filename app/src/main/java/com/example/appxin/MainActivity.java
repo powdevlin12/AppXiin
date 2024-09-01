@@ -15,12 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.appxin.actionbart.ActionBar;
 import com.example.appxin.englishapp.ActivityEnglishApp;
 import com.example.appxin.fortythree.ActivityFrom;
 import com.example.appxin.gridview.ActivityGridView;
 import com.example.appxin.linearLayoutCaculator.ActivityCaculator;
 import com.example.appxin.listviewcontact.ActivityContact;
 import com.example.appxin.retrofitlearn.ActivityRetrofit;
+import com.example.appxin.sqlite.Sqlite;
 import com.example.appxin.startActivityForResult.ActivityOne;
 import com.example.appxin.todoapp.ActivityLogin;
 import com.example.appxin.todoapp.SplashActivity;
@@ -28,7 +30,7 @@ import com.example.appxin.viewpager.ActivityViewPager;
 
 public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver chargerReceiver;
-    private Button btnJump, btnJump43, btnStartActivityForResult, btnCaculator, btnListViewContact, btnGridView, btnEnglishApp, btnViewPager, btnRetrofit, btnTodoApp;
+    private Button btnJump, btnJump43, btnStartActivityForResult, btnCaculator, btnListViewContact, btnGridView, btnEnglishApp, btnViewPager, btnRetrofit, btnTodoApp, btnActionBar, btnSqLite;
     private static final int PERMISSION_REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         btnViewPager = this.findViewById(R.id.btnViewPager);
         btnRetrofit = this.findViewById(R.id.btnRetrofit);
         btnTodoApp = this.findViewById(R.id.btn_todo_app);
+        btnActionBar = this.findViewById(R.id.btnActionBar);
+        btnSqLite = this.findViewById(R.id.btnSqlLite);
 
         btnJump.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +126,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(v.getContext(), ActivityLogin.class));
+            }
+        });
+
+        btnActionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), ActionBar.class));
+            }
+        });
+
+        btnSqLite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), Sqlite.class);
+                startActivity(i);
             }
         });
 

@@ -19,7 +19,7 @@ public interface TodoApiService {
 //    http://10.0.2.2/api/todo/
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     TodoApiService apiService = new Retrofit.Builder()
-            .baseUrl("http://172.16.1.191:3000/api/todo/")
+            .baseUrl("http://192.168.1.7:3000/api/todo/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(TodoApiService.class);
