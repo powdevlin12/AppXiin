@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.appxin.TodoKotlin.TaskActivity;
 import com.example.appxin.actionbart.ActionBar;
 import com.example.appxin.englishapp.ActivityEnglishApp;
 import com.example.appxin.fortythree.ActivityFrom;
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         btnTodoKotlin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), ActivityLogin.class));
+                startActivity(new Intent(view.getContext(), TaskActivity.class));
             }
         });
 

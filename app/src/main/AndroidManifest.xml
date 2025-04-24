@@ -28,6 +28,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".TodoKotlin.TaskActivity"
+            android:exported="false" />
+        <activity
             android:name=".sqlite2.AddProductSQLite"
             android:exported="false" />
         <activity
