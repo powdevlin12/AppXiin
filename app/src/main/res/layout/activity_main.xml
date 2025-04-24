@@ -104,5 +104,11 @@
             android:text="Todo App"
             android:id="@+id/btn_todo_app"
             />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Todo App Kotlin"
+            android:id="@+id/btn_todo_app_kotlin"
+        />
     </LinearLayout>
 </LinearLayout>

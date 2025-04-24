@@ -34,7 +34,7 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver chargerReceiver;
-    private Button btnJump, btnJump43, btnStartActivityForResult, btnCaculator, btnListViewContact, btnGridView, btnEnglishApp, btnViewPager, btnRetrofit, btnTodoApp, btnActionBar, btnSqLite, btnSqlite2;
+    private Button btnJump, btnJump43, btnStartActivityForResult, btnCaculator, btnListViewContact, btnGridView, btnEnglishApp, btnViewPager, btnRetrofit, btnTodoApp, btnActionBar, btnSqLite, btnSqlite2, btnTodoKotlin;
     private static final int PERMISSION_REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         btnActionBar = this.findViewById(R.id.btnActionBar);
         btnSqLite = this.findViewById(R.id.btnSqlLite);
         btnSqlite2 = this.findViewById(R.id.btnSqlite2);
+        btnTodoKotlin = this.findViewById(R.id.btn_todo_app_kotlin);
 
         btnJump.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +138,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(v.getContext(), ActivityLogin.class));
+            }
+        });
+
+        btnTodoKotlin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), ActivityLogin.class));
             }
         });
 
