@@ -28,6 +28,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".listviewKt.ListViewKt"
+            android:exported="false" />
+        <activity
             android:name=".TodoKotlin.TaskActivity"
             android:exported="false" />
         <activity

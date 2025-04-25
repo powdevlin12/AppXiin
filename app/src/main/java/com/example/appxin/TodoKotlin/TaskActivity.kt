@@ -23,7 +23,6 @@ class TaskActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_task)
         etTask = findViewById(R.id.etTask)
         btnAdd = findViewById(R.id.btnAdd)
@@ -32,6 +31,7 @@ class TaskActivity : AppCompatActivity() {
         setupRecyclerView()
         setupClickListeners()
     }
+
     private fun setupRecyclerView() {
         taskAdapter = TaskAdapter(
             tasks,

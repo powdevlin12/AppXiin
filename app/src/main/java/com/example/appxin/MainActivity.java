@@ -22,6 +22,7 @@ import com.example.appxin.englishapp.ActivityEnglishApp;
 import com.example.appxin.fortythree.ActivityFrom;
 import com.example.appxin.gridview.ActivityGridView;
 import com.example.appxin.linearLayoutCaculator.ActivityCaculator;
+import com.example.appxin.listviewKt.ListViewKt;
 import com.example.appxin.listviewcontact.ActivityContact;
 import com.example.appxin.retrofitlearn.ActivityRetrofit;
 import com.example.appxin.sqlite.Sqlite;
@@ -35,7 +36,7 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver chargerReceiver;
-    private Button btnJump, btnJump43, btnStartActivityForResult, btnCaculator, btnListViewContact, btnGridView, btnEnglishApp, btnViewPager, btnRetrofit, btnTodoApp, btnActionBar, btnSqLite, btnSqlite2, btnTodoKotlin;
+    private Button btn_lvkt, btnJump, btnJump43, btnStartActivityForResult, btnCaculator, btnListViewContact, btnGridView, btnEnglishApp, btnViewPager, btnRetrofit, btnTodoApp, btnActionBar, btnSqLite, btnSqlite2, btnTodoKotlin;
     private static final int PERMISSION_REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
         btnSqLite = this.findViewById(R.id.btnSqlLite);
         btnSqlite2 = this.findViewById(R.id.btnSqlite2);
         btnTodoKotlin = this.findViewById(R.id.btn_todo_app_kotlin);
+        btn_lvkt = this.findViewById(R.id.btn_lvkt);
+
+        btn_lvkt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), ListViewKt.class);
+                startActivity(i);
+            }
+        });
 
         btnJump.setOnClickListener(new View.OnClickListener() {
             @Override
